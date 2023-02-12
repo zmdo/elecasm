@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 配置寄存器选择器 -->
+	<bean name="regselector" class="com.TrichromaticFire.elecasm.core.analysis.impl.RegisterSelector">
+		<property name="registersXML" value="conf/dictionary/registers.xml"></property>
+	</bean>
+	
+	<!-- 配置flag过滤器工厂 -->
+	<bean name="flagFilterFactory" class="com.TrichromaticFire.elecasm.core.analysis.impl.FlagFilterFactory">
+		<property name="flagFilterXMLConfigure" value = "conf/com/TrichromaticFire/elecasm/core/conf/flagFilterFactory.cfg.xml"></property>
+		<property name="regselector" ref="regselector"></property>
+	</bean>
+	
+	<!-- 配置flag分析器 -->
+	<bean name="flagAnalysis" class="com.TrichromaticFire.elecasm.core.analysis.impl.FlagAnalysis">
+		<property name="flagFilterFactory" ref = "flagFilterFactory"></property>
+		<property name="flagsXML" value="conf/dictionary/flags.xml"></property>
+	</bean>
+	
+	<!-- 配置编码转换器工厂 -->
+	<bean name="operandAdaptorFactory" class="com.TrichromaticFire.elecasm.core.analysis.impl.OperandAdaptorFactory">
+		<property name="operandAdaptorXMLConfigure" value = "conf/com/TrichromaticFire/elecasm/core/conf/operandAdaptorFactory.cfg.xml"></property>
+		<property name="flagAnalysis" ref="flagAnalysis"></property>
+	</bean>
+	
+	<!-- 配置编码分析器 -->
+	<bean name="operandAnalysis" class="com.TrichromaticFire.elecasm.core.analysis.impl.OperandAnalysis">
+		<property name="operandAdaptorFactory" ref="operandAdaptorFactory"></property>
+		<property name="operandsXMLConfigure" value="conf/dictionary/operands.xml"></property>
+	</bean>
+	
+</beans>

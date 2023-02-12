@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flags>
+	<!--
+	类型：
+	hexNumber			16进制纯数字
+	number				纯数字
+	register			通用寄存器
+	special-register	专用寄存器
+	符号映射规则
+	||  或者
+	*	表示可以任意代替为flag配置的type类型的对象
+	
+	-->
+	
+	<!--16进制立即数-->
+	<flag name="hexNumber" sign="#H" type="hexNumber">
+		<flag-mapping>
+			#*H
+		</flag-mapping>
+	</flag>
+	
+	<!--立即数-->
+	<flag name="number" sign="#" type="number">
+		<flag-mapping>
+			#*
+		</flag-mapping>
+	</flag>
+	
+	<!--通用寄存器-->
+	<flag name="utilRegs" sign="R" type="register">
+		<flag-mapping>
+			*
+		</flag-mapping>
+	</flag>
+	
+	<!--加法寄存器-->
+	<flag name="ALURegs" sign="A" type="special-register">	
+		<flag-mapping>
+			A
+		</flag-mapping>
+	</flag>
+	
+	<!--内存地址-->
+	<flag name="memory" sign="M" type="number">
+		<flag-mapping>
+			*
+		</flag-mapping>
+	</flag>
+	
+	<!--内存地址-->
+	<flag name="hexMemory" sign="MH" type="hexNumber">
+		<flag-mapping>
+			*H
+		</flag-mapping>
+	</flag>
+	
+	<!--寻址-->
+	<flag name="address" sign="@" type="register">
+		<flag-mapping>
+			@*
+		</flag-mapping>
+	</flag>
+	
+	<flag name="KRegs" sign="SW" type="special-register">	
+		<flag-mapping>
+			SW
+		</flag-mapping>
+	</flag>
+	
+	<flag name="OUTRegs" sign="LED" type="special-register">	
+		<flag-mapping>
+			LED
+		</flag-mapping>
+	</flag>
+</flags>

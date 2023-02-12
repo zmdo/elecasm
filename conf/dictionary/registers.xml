@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<registers>
+	<!-- 通用寄存器  -->
+	<register name = "R0">00</register>
+	<register name = "R1">01</register>
+	<register name = "R2">10</register>
+	<register name = "R3">11</register>
+	
+	<!-- 专用寄存器 -->
+	<special-register name = "A"></special-register>
+	<special-register name = "W"></special-register>
+	<special-register name = "SW"></special-register>
+	<special-register name = "LED"></special-register>
+	
+</registers>

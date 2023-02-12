@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<operands>
+	<!-- 
+		code属性
+		flag:表明指令输入格式，需要对照flags表来进行标记
+		granularity:粒度，表示size的单位为多少bit
+		size:表示大小
+		比如:granularity = 8
+			size = 2
+		那么该指令就占据size*granularity = 16位
+		
+		code-order书写规则：
+		operand  操作码
+		(flag,n) 标记占n位
+		(0,n)    表示n个0
+		(1,n)    表示n个1
+		注意当出现多个相同的标记时，需要对其进行标号
+		如:
+			flag = "R,R"
+			写<code-order>需要标记
+			(operand,8)(R[0],4)(R[1],4)
+	 -->
+ 	<operand>
+		<name>ADD</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>000100</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>000101</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>000110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>000110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>000111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>000111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>ADDC</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>001000</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>001001</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>001010</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>001010</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>001011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>001011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+ 	<operand>
+		<name>SUB</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>001100</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>001101</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>001110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>001110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>001111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>001111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>SUBC</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>010000</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>010010</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>010100</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>010100</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>010011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>010011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>AND</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>010100</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>010101</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>010110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>010110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>010111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>010111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>OR</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>011000</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>011001</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>011010</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>011010</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>011011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>011011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>MOV</name>
+		<codes>
+			<code size="1" flag="A,R" granularity="8">
+				<code-bits>011100</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>
+			</code>
+			<code size="1" flag="A,@" granularity="8">
+				<code-bits>011101</code-bits>
+				<code-order>
+					(operand,6)(@,2)
+				</code-order>
+			</code>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>011110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>011110</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#" granularity="8">
+				<code-bits>011111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,#H" granularity="8">
+				<code-bits>011111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(#H,8)
+				</code-order>
+			</code>
+			<code size="1" flag="R,A" granularity="8">
+				<code-bits>100000</code-bits>
+				<code-order>
+					(operand,6)(R,2)
+				</code-order>			
+			</code>
+			<code size="1" flag="@,A" granularity="8">
+				<code-bits>100001</code-bits>
+				<code-order>
+					(operand,6)(0,2)(@,8)
+				</code-order>
+			</code>
+			<code size="2" flag="M,A"  granularity="8">
+				<code-bits>100010</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="MH,A"  granularity="8">
+				<code-bits>100010</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<code size="2" flag="R,#H"  granularity="8">
+				<code-bits>100011</code-bits>
+				<code-order>
+					(operand,6)(R,2)(#H,8)
+				</code-order>
+			</code>
+			<code size="2" flag="R,#"  granularity="8">
+				<code-bits>100011</code-bits>
+				<code-order>
+					(operand,6)(R,2)(#,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>READ</name>
+		<codes>
+			<code size="2" flag="A,M" granularity="8">
+				<code-bits>100100</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="A,MH" granularity="8">
+				<code-bits>100101</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>WRITE</name>
+		<codes>
+			<code size="2" flag="M,A"  granularity="8">
+				<code-bits>100101</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="MH,A"  granularity="8">
+				<code-bits>100101</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>JC</name>
+		<codes>
+			<code size="2" flag="M" granularity="8">
+				<code-bits>101000</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="MH" granularity="8">
+				<code-bits>101000</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>JZ</name>
+		<codes>
+			<code size="2" flag="M" granularity="8">
+				<code-bits>101001</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="MH" granularity="8">
+				<code-bits>101001</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+			<!-- 未使用 -->
+			<code size="1" granularity="8">
+				<code-bits>101010</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>JMP</name>
+		<codes>
+			<code size="2" flag="M" granularity="8">
+				<code-bits>101011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="MH" granularity="8">
+				<code-bits>101011</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+
+	<operand>
+		<name>CALL</name>
+		<codes>
+			<code size="2" flag="M" granularity="8">
+				<code-bits>101111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(M,8)
+				</code-order>
+			</code>
+			<code size="2" flag="MH" granularity="8">
+				<code-bits>101111</code-bits>
+				<code-order>
+					(operand,6)(0,2)(MH,8)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>IN</name>
+		<codes>
+			<code size="1" flag="A,SW" granularity="8">
+				<code-bits>110000</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>OUT</name>
+		<codes>
+			<code size="1" flag="LED,A" granularity="8">
+				<code-bits>110001</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>RET</name>
+		<codes>
+			<code size="1" granularity="8">
+				<code-bits>110011</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>RR</name>
+		<codes>
+			<code size="1" flag="A" granularity="8">
+				<code-bits>110100</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>RL</name>
+		<codes>
+			<code size="1" flag="A" granularity="8">
+				<code-bits>110101</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>RRC</name>
+		<codes>
+			<code size="1" flag="A" granularity="8">
+				<code-bits>110110</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>RLC</name>
+		<codes>
+			<code size="1" flag="A" granularity="8">
+				<code-bits>110111</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+	
+	<operand>
+		<name>NOP</name>
+		<codes>
+			<code size="1" granularity="8">
+				<code-bits>111000</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+
+	<operand>
+		<name>CPL</name>
+		<codes>
+			<code size="1" flag="A" granularity="8">
+				<code-bits>111001</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+
+	<operand>
+		<name>RETI</name>
+		<codes>
+			<code size="1" flag="A" granularity="8">
+				<code-bits>111011</code-bits>
+				<code-order>
+					(operand,6)(0,2)
+				</code-order>
+			</code>
+		</codes>
+	</operand>
+
+</operands>
