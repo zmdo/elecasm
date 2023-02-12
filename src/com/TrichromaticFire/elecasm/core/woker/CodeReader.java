@@ -10,16 +10,15 @@ public class CodeReader {
 	public static final OriginalCode ERROR_CODE = new OriginalCode();
 	
 	public static String Preprocessing(String str){
-		String text = str.toString();
-		if(text == null) return null;
-		else{
-			if(text.contains("//")){
-				int index = text.indexOf("//");
-				text = text.substring(0,index);
-			}
+		if (str == null) {
+			return null;
 		}
-		if(text.isEmpty()) return null;
-		else return text;
+		String text = str;
+		if(text.contains("//")){
+			int index = text.indexOf("//");
+			text = text.substring(0,index);
+		}
+		return text.isEmpty() ? null : text;
 	}
 	
 	public static OriginalCode splitCode(String code){
@@ -42,7 +41,7 @@ public class CodeReader {
 	
 	public static Queue<OriginalCode> read(String text){
 		Queue<OriginalCode> queue = new LinkedBlockingQueue<>();
-		String[] codes = text.split("\r|\n");
+		String[] codes = text.split("[\r\n]");
 		String tmp;
 		for(String code:codes){
 			tmp = Preprocessing(code);
